@@ -19,36 +19,15 @@ public class TurboDrive extends Element {
     private double outletEnthalpy;
     private int selectionNumber;
 
-
     public TurboDrive(String name,
-                      double mechanicalEfficiency,
                       double relativeInternalEfficiency,
-                      double condenserPressure,
-                      double feedwaterFlow,
-                      Pump feedPump,
-                      Superheater superheater) {
-        // TODO: 01.09.2019 Нужен ли вообще этот конструктор?
+                      double condenserPressure) {
         super(name);
-        this.mechanicalEfficiency = mechanicalEfficiency;
         this.relativeInternalEfficiency = relativeInternalEfficiency;
         this.condenserPressure = condenserPressure;
-        this.inletEnthalpy = superheater.getEnthalpyOfHeatedMedium();
-        IF97 waterSteam = new IF97(IF97.UnitSystem.DEFAULT);
-        this.outletEnthalpy =
-                inletEnthalpy - relativeInternalEfficiency * (inletEnthalpy - waterSteam.specificEnthalpyPS(
-                        condenserPressure,
-                        waterSteam.specificEntropyPH(superheater.getPressureOfHeatedMedium(), superheater.getEnthalpyOfHeatedMedium())));
-        this.turboPower = feedPump.getEnthalpyIncrease() * feedwaterFlow / 1000 / mechanicalEfficiency;
-        this.steamConsumption = turboPower * 1000 / (inletEnthalpy - outletEnthalpy);
     }
 
-    public TurboDrive(String name,
-                      double relativeInternalEfficiency,
-                      double condenserPressure,
-                      double feedwaterFlow) {
-        super(name);
-        this.relativeInternalEfficiency = relativeInternalEfficiency;
-        this.condenserPressure = condenserPressure;
+    public void setFeedwaterFlow(double feedwaterFlow) {
         this.feedwaterFlow = feedwaterFlow;
     }
 
@@ -81,7 +60,7 @@ public class TurboDrive extends Element {
         }
         //--------------------------------------------------------------------------------------------------------------
 
-        //--------------------------------Связи с элементами по линии греющего пара-------------------------------------
+        //--------------------------------Механические связи с элементами ----------------------------------------------
         for (int j = 0; j < nVerts; j++) {
             int relations = adjMat.get(Graph.MECHANICAL_COMMUNICATION)[v][j];
             if (relations == -1 || relations == 1) {

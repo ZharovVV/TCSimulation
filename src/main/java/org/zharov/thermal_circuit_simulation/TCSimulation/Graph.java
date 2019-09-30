@@ -134,8 +134,7 @@ public class Graph {
         element.matrixCompilation(v, matrices, this);
     }
 
-    public ThermalEfficiencyIndicators dfsAndCalculationOfThermalEfficiencyIndicators(double generatorEfficiency, double mechanicalEfficiencyOfTurbogenerator) {
-        ThermalEfficiencyIndicators thermalEfficiencyIndicators = new ThermalEfficiencyIndicators(generatorEfficiency, mechanicalEfficiencyOfTurbogenerator);
+    void dfsAndCalculationOfThermalEfficiencyIndicators(ThermalEfficiencyIndicators thermalEfficiencyIndicators) {
         vertexList.get(0).wasVisited = true;
         calculationOfThermalEfficiencyIndicators(0, thermalEfficiencyIndicators);
         stack.add(0);
@@ -161,8 +160,6 @@ public class Graph {
         thermalEfficiencyIndicators.calculationOfHeatConsumptionForATurbineForElectricityGeneration();
         thermalEfficiencyIndicators.calculationOfSpecificGrossHeatConsumptionForElectricityProduction();
         thermalEfficiencyIndicators.calculationOfElectricalEfficiency();
-
-        return thermalEfficiencyIndicators;
     }
 
     private void calculationOfThermalEfficiencyIndicators(int v, ThermalEfficiencyIndicators thermalEfficiencyIndicators) {
@@ -216,7 +213,7 @@ public class Graph {
         return nVerts;
     }
 
-    public void startCalculation() {
+    void startCalculation() {
         /*dfs();*/
         dfsAndCalculationOfInitialParameters();
         Matrices matrices = dfsAndMatrixCompilation();

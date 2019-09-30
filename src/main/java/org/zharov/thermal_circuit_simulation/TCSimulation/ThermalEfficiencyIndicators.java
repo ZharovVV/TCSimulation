@@ -79,6 +79,18 @@ public class ThermalEfficiencyIndicators {
         listOfInternalCompartmentPower = new ArrayList<>();
     }
 
+    public List<Double> getListOfInternalCompartmentPower() {
+        return listOfInternalCompartmentPower;
+    }
+
+    public double getGeneratorEfficiency() {
+        return generatorEfficiency;
+    }
+
+    public double getMechanicalEfficiencyOfTurbogenerator() {
+        return mechanicalEfficiencyOfTurbogenerator;
+    }
+
     public void setSteamConsumptionToTheTurbine(double steamConsumptionToTheTurbine) {
         this.steamConsumptionToTheTurbine = steamConsumptionToTheTurbine;
     }
@@ -111,7 +123,7 @@ public class ThermalEfficiencyIndicators {
         return mapOfPowerConsumptionForPumpDrive;
     }
 
-    public void calculationOfInternalCompartmentPower() {
+    void calculationOfInternalCompartmentPower() {
         if (!listOfInternalCompartmentPower.isEmpty()) {
             return;
         }
@@ -123,7 +135,7 @@ public class ThermalEfficiencyIndicators {
         }
     }
 
-    public void calculationOfGuaranteedElectricPower() {
+    void calculationOfGuaranteedElectricPower() {
         if (guaranteedElectricPower > 0.0) {
             return;
         }
@@ -133,7 +145,7 @@ public class ThermalEfficiencyIndicators {
         guaranteedElectricPower *= 0.98 * generatorEfficiency * mechanicalEfficiencyOfTurbogenerator / 1000;
     }
 
-    public void calculationOfElectricityConsumptionForOwnNeeds() {
+    void calculationOfElectricityConsumptionForOwnNeeds() {
         if (electricityConsumptionForOwnNeeds > 0.0) {
             return;
         }
@@ -142,15 +154,15 @@ public class ThermalEfficiencyIndicators {
         }
     }
 
-    public void calculationOfHeatConsumptionForATurbineForElectricityGeneration() {
+    void calculationOfHeatConsumptionForATurbineForElectricityGeneration() {
         heatConsumptionForATurbineForElectricityGeneration = steamConsumptionToTheTurbine * (outletEnthalpy - inletEnthalpy) / 1000 - thermalPowerOfHeatNetwork;
     }
 
-    public void calculationOfSpecificGrossHeatConsumptionForElectricityProduction() {
+    void calculationOfSpecificGrossHeatConsumptionForElectricityProduction() {
         specificGrossHeatConsumptionForElectricityProduction = heatConsumptionForATurbineForElectricityGeneration / (guaranteedElectricPower + turboPower);
     }
 
-    public void calculationOfElectricalEfficiency() {
+    void calculationOfElectricalEfficiency() {
         electricalGrossEfficiency = (guaranteedElectricPower + turboPower) / heatConsumptionForATurbineForElectricityGeneration * 100;
         netElectricalEfficiency = (guaranteedElectricPower - electricityConsumptionForOwnNeeds) / heatConsumptionForATurbineForElectricityGeneration * 100;
     }

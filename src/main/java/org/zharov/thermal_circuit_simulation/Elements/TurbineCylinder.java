@@ -25,7 +25,6 @@ public class TurbineCylinder extends Element {
         super(name);
         this.NUMBER_OF_SELECTIONS = numberOfSelections;
         listOfParametersInSelections = new ArrayList<>(numberOfSelections + 2);
-        listOfConsumptionThroughTheCompartmentOfThisTurbine = new ArrayList<>();
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -199,8 +198,10 @@ public class TurbineCylinder extends Element {
         List<Vertex> vertexList = theGraph.getVertexList();
         List<Consumptions> listOfConsumptionThroughTheCompartment = thermalEfficiencyIndicators.getListOfConsumptionThroughTheCompartment();
         List<Double> listOfHeatTransferCompartments = thermalEfficiencyIndicators.getListOfHeatTransferCompartments();
+        listOfConsumptionThroughTheCompartmentOfThisTurbine = new ArrayList<>();
 
 
+        // TODO: 30.09.2019 Переделать в обычный обход с int i =0...
         for (Parameters parametersInSelection : listOfParametersInSelections) {
             int index = listOfParametersInSelections.indexOf(parametersInSelection);
             if (index < listOfParametersInSelections.size() - 1) {
