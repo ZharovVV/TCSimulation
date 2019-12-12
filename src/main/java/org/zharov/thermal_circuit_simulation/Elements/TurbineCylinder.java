@@ -19,8 +19,6 @@ public class TurbineCylinder extends Element {
 
     private Equation materialBalanceEquation = new Equation(this);
 
-    private List<Consumptions> listOfConsumptionThroughTheCompartmentOfThisTurbine;
-
     public TurbineCylinder(String name, int numberOfSelections) {
         super(name);
         this.NUMBER_OF_SELECTIONS = numberOfSelections;
@@ -198,12 +196,11 @@ public class TurbineCylinder extends Element {
         List<Vertex> vertexList = theGraph.getVertexList();
         List<Consumptions> listOfConsumptionThroughTheCompartment = thermalEfficiencyIndicators.getListOfConsumptionThroughTheCompartment();
         List<Double> listOfHeatTransferCompartments = thermalEfficiencyIndicators.getListOfHeatTransferCompartments();
-        listOfConsumptionThroughTheCompartmentOfThisTurbine = new ArrayList<>();
+        List<Consumptions> listOfConsumptionThroughTheCompartmentOfThisTurbine = new ArrayList<>();
 
 
-        // TODO: 30.09.2019 Переделать в обычный обход с int i =0...
-        for (Parameters parametersInSelection : listOfParametersInSelections) {
-            int index = listOfParametersInSelections.indexOf(parametersInSelection);
+        for (int index =0; index < listOfParametersInSelections.size(); ++index) {
+            Parameters parametersInSelection = listOfParametersInSelections.get(index);
             if (index < listOfParametersInSelections.size() - 1) {
                 double heatTransfer = parametersInSelection.enthalpy - listOfParametersInSelections.get(index + 1).enthalpy;
                 if (heatTransfer != 0.0) {
@@ -215,7 +212,6 @@ public class TurbineCylinder extends Element {
                 }
             }
         }
-
 
         for (int j = 0; j < nVerts; j++) {
             int relations = adjMat.get(Graph.SUPERHEATED_STEAM)[v][j];

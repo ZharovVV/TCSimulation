@@ -104,7 +104,6 @@ public class SealEjectorWithCooler extends Element implements MatrixCompilation 
         return materialBalanceEquation;
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public void matrixCompilation(int v, Matrices matrices, Graph theGraph) {
         this.outputFlow = highPressureFlow;
