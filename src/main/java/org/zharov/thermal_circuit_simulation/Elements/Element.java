@@ -8,14 +8,14 @@ import org.zharov.thermal_circuit_simulation.HelperСlassesAndInterfaces.Describ
 import org.zharov.thermal_circuit_simulation.HelperСlassesAndInterfaces.Matrices;
 
 public abstract class Element implements Describable, Calculation, MatrixCompilation {
-    public final String NAME;
+    public final String name;
     public Element(String name) {
-        this.NAME = name;
+        this.name = name;
     }
 
     @Override
     public void describe() {
-        System.out.println("Параметры " + NAME + " :");
+        System.out.println("Параметры " + name + " :");
         System.out.println("------------------------------------------------------------------------------------------------------------------");
     }
 

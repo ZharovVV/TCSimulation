@@ -156,7 +156,7 @@ public class Matrices {
     public void describeMatrices() {
         System.out.println();
         for (int i = 0; i < coefficientMatrix.length; i++) {
-            System.out.print(listOfLinesOfEquations.get(i).getElement().NAME + " : " + '[');
+            System.out.print(listOfLinesOfEquations.get(i).getElement().name + " : " + '[');
             for (int j = 0; j < coefficientMatrix[i].length; j++) {
                 System.out.print(coefficientMatrix[i][j] + ", ");
             }

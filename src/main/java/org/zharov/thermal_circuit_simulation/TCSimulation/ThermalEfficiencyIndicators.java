@@ -187,7 +187,7 @@ public class ThermalEfficiencyIndicators {
         for (Map.Entry<Pump, Double> pumpsDoubleEntry : mapOfPowerConsumptionForPumpDrive.entrySet()) {
             Pump pump = pumpsDoubleEntry.getKey();
             double power = mapOfPowerConsumptionForPumpDrive.get(pump);
-            System.out.println(pump.NAME + " : " + power + " ,МВт");
+            System.out.println(pump.name + " : " + power + " ,МВт");
         }
         System.out.println();
         System.out.println("Расход электроэнергии на собственные нужды: " + electricityConsumptionForOwnNeeds + ", МВт");

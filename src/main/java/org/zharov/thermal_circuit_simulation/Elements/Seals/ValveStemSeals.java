@@ -92,7 +92,7 @@ public class ValveStemSeals  extends Element implements MatrixCompilation {
     public void describe() {
         super.describe();
         for (Map.Entry<Element, Double> elementsDoubleEntry : elementContributionToSteamConsumptionInSeals.entrySet()) {
-            System.out.println("Элемент схемы: " + elementsDoubleEntry.getKey().NAME +
+            System.out.println("Элемент схемы: " + elementsDoubleEntry.getKey().name +
                     " Расход пара из (в) уплотнения: " + elementContributionToSteamConsumptionInSeals.get(elementsDoubleEntry.getKey()));
         }
         System.out.println("------------------------------------------------------------------------------------------------------------------");

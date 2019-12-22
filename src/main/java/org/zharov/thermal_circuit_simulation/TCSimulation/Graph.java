@@ -55,7 +55,7 @@ public class Graph {
     }
 
     private void displayVertex(int v) {
-        System.out.println(vertexList.get(v).element.NAME);
+        System.out.println(vertexList.get(v).element.name);
     }
 
     public void dfs() {
